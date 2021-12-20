@@ -17,7 +17,7 @@ except ImportError:
 	from pycaw.pycaw import AudioUtilities, AudioSession
 
 # check for updates
-version = "v1.1"
+version = "v1.2"
 r = requests.get("https://api.github.com/repos/MinekPo1/shuh_teams/releases")
 j = r.json()
 if r.status_code != 200:
@@ -30,19 +30,18 @@ elif j[0]["tag_name"] != version:
 		print("[!] Error: Could not download update")
 	else:
 		z = zipfile.ZipFile(io.BytesIO(r.content))
-		print("[!] Extracting update...")
 		for i in z.filelist:
 			if i.filename == "shush_teams.py":
 				d = z.read(i)
 				with open(__file__, "wb") as f:
 					f.write(d)
-				print("[!] Update downloaded")
-				print("[!] Restarting...")
-				subprocess.Popen(["python3", __file__])
-				sys.exit()
+				break
 		else:
-			print("[!] Update not downloaded")
-			print("[!] Please download manually")
+			print("[!] Update downloaded")
+			print("[!] Restarting...")
+			subprocess.Popen([sys.executable, __file__])
+			sys.exit()
+	print("[!] Update not downloaded")
 
 
 print("Running...\r",end="")
