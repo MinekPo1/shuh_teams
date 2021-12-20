@@ -17,7 +17,7 @@ except ImportError:
 	from pycaw.pycaw import AudioUtilities, AudioSession
 
 # check for updates
-version = "v1"
+version = "v1.1"
 r = requests.get("https://api.github.com/repos/MinekPo1/shuh_teams/releases")
 j = r.json()
 if r.status_code != 200:
