@@ -30,18 +30,19 @@ elif j[0]["tag_name"] != version:
 		print("[!] Error: Could not download update")
 	else:
 		z = zipfile.ZipFile(io.BytesIO(r.content))
+		print("[!] Extracting update...")
 		for i in z.filelist:
 			if i.filename == "shush_teams.py":
 				d = z.read(i)
 				with open(__file__, "wb") as f:
 					f.write(d)
-				break
+				print("[!] Update downloaded")
+				print("[!] Restarting...")
+				subprocess.Popen(["python3", __file__])
+				sys.exit()
 		else:
-			print("[!] Update downloaded")
-			print("[!] Restarting...")
-			subprocess.Popen(["python3", __file__])
-			sys.exit()
-	print("[!] Update not downloaded")
+			print("[!] Update not downloaded")
+			print("[!] Please download manually")
 
 
 print("Running...\r",end="")
