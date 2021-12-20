@@ -1,7 +1,9 @@
+import io
 import time
 import subprocess
 import sys
 import requests
+import zipfile
 
 
 def install(package):
@@ -27,11 +29,16 @@ elif j[0]["tag_name"] != version:
 	if r.status_code != 200:
 		print("[!] Error: Could not download update")
 	else:
-		with open(__file__, "wb") as f:
-			f.write(r.content)
+		z = zipfile.ZipFile(io.BytesIO(r.content))
+		for i in z.filelist:
+			if i.filename == "shush_teams.py":
+				d = z.read(i)
+				with open(__file__, "wb") as f:
+					f.write(d)
+				break
 		print("[!] Update downloaded")
 		print("[!] Restarting...")
-		subprocess.Popen(["python3", "shush_teams.py"])
+		subprocess.Popen(["python3", __file__])
 		sys.exit()
 
 
