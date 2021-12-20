@@ -18,7 +18,7 @@ except ImportError:
 
 # check for updates
 version = "v1"
-r = requests.get("https://api.github.com/repos/MinekPo1/shush_teams/releases")
+r = requests.get("https://api.github.com/repos/MinekPo1/shuh_teams/releases")
 j = r.json()
 if r.status_code != 200:
 	print("[!] Error: Could not check for updates")
@@ -36,10 +36,12 @@ elif j[0]["tag_name"] != version:
 				with open(__file__, "wb") as f:
 					f.write(d)
 				break
-		print("[!] Update downloaded")
-		print("[!] Restarting...")
-		subprocess.Popen(["python3", __file__])
-		sys.exit()
+		else:
+			print("[!] Update downloaded")
+			print("[!] Restarting...")
+			subprocess.Popen(["python3", __file__])
+			sys.exit()
+	print("[!] Update not downloaded")
 
 
 print("Running...\r",end="")
