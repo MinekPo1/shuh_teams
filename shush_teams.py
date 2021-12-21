@@ -1,7 +1,6 @@
 import io
 import time
 import sys
-import requests
 import zipfile
 import yaml
 import subprocess
@@ -12,6 +11,11 @@ def install(package):
 	subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
 
+try:
+	import requests
+except ImportError:
+	install("requests")
+	import requests
 try:
 	import jsonschema
 except ImportError:
