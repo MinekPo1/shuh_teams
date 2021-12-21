@@ -5,11 +5,15 @@ import zipfile
 import yaml
 import subprocess
 import re
+import os
 
 
 def install(package):
 	subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
+
+if os.name == "nt":
+	os.system("")  # Enable ANSI codes on windows. Why does this work? No idea.
 
 try:
 	import requests
@@ -103,7 +107,7 @@ except FileNotFoundError:
 
 # check for updates
 if settings["autoupdate"]:
-	version = "v1.5"
+	version = "v1.5.2"
 	r = requests.get("https://api.github.com/repos/MinekPo1/shuh_teams/releases")
 	j = r.json()
 	if r.status_code != 200:
