@@ -8,7 +8,7 @@ Originally written for teams, but can be used for any app.
 
 Requirements:
 
-- **python**, written in python 3.10, however, it might work with earlier versions. If you are on windows you can install python 3.10 from the [Microsoft store](https://www.microsoft.com/store/productId/9PJPW5LDXLZ5), if you are on Linux, I assume you know how to install python.
+- **python**, written in python 3.9, however, it might work with earlier versions. If you are on windows you can install python 3.9 from the [Microsoft store](https://www.microsoft.com/store/productId/9P7QFQMJRFP7), if you are on Linux, I assume you know how to install python.
 
 1. Click on the newest release and download the package.zip file.
 2. Extract the contents, and run the shush_teams.py file.
